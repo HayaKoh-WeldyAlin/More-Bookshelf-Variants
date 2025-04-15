@@ -1,7 +1,7 @@
-package io.github.lieonlion.lolmbv;
+package dev.lieonlion.lolmbv;
 
-import io.github.lieonlion.lolmbv.init.MbvItemInit;
-import io.github.lieonlion.lolmbv.init.MbvBlockInit;
+import dev.lieonlion.lolmbv.init.MbvItemInit;
+import dev.lieonlion.lolmbv.init.MbvBlockInit;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Blocks;

@@ -1,10 +1,9 @@
-package io.github.lieonlion.lolmbv.init;
+package dev.lieonlion.lolmbv.init;
 
-import io.github.lieonlion.lolmbv.MoreBookshelfVariants;
-import io.github.lieonlion.lolmbv.block.MoreBookshelfBlock;
+import dev.lieonlion.lolmbv.MoreBookshelfVariants;
+import dev.lieonlion.lolmbv.block.MoreBookshelfBlock;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.material.MapColor;
 

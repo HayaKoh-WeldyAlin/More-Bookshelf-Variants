@@ -1,30 +1,37 @@
 plugins {
-	id 'fabric-loom' version '1.9-SNAPSHOT'
+	id 'fabric-loom' version '1.10-SNAPSHOT'
 	id 'maven-publish'
 }
 
 version = "${mod_version}+${minecraft_version}-Fabric"
-group = project.mod_group_id
+group = mod_group_id
 
 base {
 	archivesName = mod_comp_name
 }
 
-repositories {}
+
+repositories {
+	maven {
+		name = "Modrinth"
+		url = "https://api.modrinth.com/maven"
+	}
+}
 
 dependencies {
-	minecraft "com.mojang:minecraft:${project.minecraft_version}"
+	minecraft "com.mojang:minecraft:${minecraft_version}"
 	mappings loom.officialMojangMappings()
-	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+	modImplementation "net.fabricmc:fabric-loader:${loader_version}"
 
-	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+	modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
+	modLocalRuntime "maven.modrinth:quad:${quad_version}+${minecraft_version}-Fabric"
 }
 
 processResources {
 	var replaceProperties = [
-			loader_version: loader_version, mod_id: mod_id, mod_name: mod_name,
-			mod_license: mod_license, mod_version: mod_version, mod_authors: mod_authors,
-			mod_description: mod_description, quad_version: quad_version
+			loader_version: loader_version, minecraft_version: minecraft_version_range, mod_id: mod_id,
+			mod_name: mod_name, mod_license: mod_license, mod_version: mod_version,
+			mod_authors: mod_authors, mod_description: mod_description, quad_version: quad_version_range
 	]
 	inputs.properties replaceProperties
 
@@ -40,8 +47,8 @@ tasks.withType(JavaCompile).configureEach {
 java {
 	withSourcesJar()
 
-	sourceCompatibility = JavaVersion.VERSION_21
-	targetCompatibility = JavaVersion.VERSION_21
+	sourceCompatibility = JavaVersion.VERSION_17
+	targetCompatibility = JavaVersion.VERSION_17
 }
 
 jar {
@@ -56,6 +63,5 @@ publishing {
 			from components.java
 		}
 	}
-
 	repositories {}
 }
